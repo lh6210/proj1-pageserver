@@ -94,8 +94,10 @@ def respond(sock):
     if ((len(parts) > 1) and (parts[0] == "GET")):
         transmit(STATUS_OK, sock)
         transmit(CAT, sock)
+        print("command before: "+ command)
         command = parts[1]
-        print (command)
+
+        print ("after "+ command)
         if (('~' in command) or ('//' in command) or ('..' in command)):
             """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
