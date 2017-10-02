@@ -96,7 +96,7 @@ def respond(sock):
         transmit(CAT, sock)
         command = parts[1]
         """print (command)"""
-        if '~' in command or '//' in command or '..' in command:
+        if '~' in command or '\//' in command or '..' in command:
             """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
         elif command.endswith('.html') or command.endswith('.css'):
@@ -107,7 +107,7 @@ def respond(sock):
                 with open(path_file, 'r', encoding='utf-8') as source:
                     for line in source:
                         transmit(line.strip(), sock)
-            except OSError as error:
+            except FileNotFoundError as error:
                 log.warn("Failed to open or read file")
                 log.warn("Requested file was {}".format(path_file))
                 log.warn("Exception: {}".format(error))
