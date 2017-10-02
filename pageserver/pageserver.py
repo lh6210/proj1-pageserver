@@ -102,6 +102,7 @@ def respond(sock):
         elif command.endswith('.html') or command.endswith('.css'):
             file = command[1:]
             path_file = os.path.join(DOCROOT, file)
+            print(path_file)
             try:
                 with open(path_file, 'r', encoding='utf-8') as source:
                     for line in source:
