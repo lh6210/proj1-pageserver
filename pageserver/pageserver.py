@@ -91,12 +91,12 @@ def respond(sock):
     log.info("Request was {}\n***\n".format(request))
 
     parts = request.split()
+    print("parts: ",  parts)
     if ((len(parts) > 1) and (parts[0] == "GET")):
         transmit(STATUS_OK, sock)
         transmit(CAT, sock)
-        print("parts "+parts)
-        command = parts[1:]
-        print ("command after "+ command)
+        command = parts[1]
+        print ("command after ", command)
         if (('~' in command) or ('//' in command) or ('..' in command)):
             """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
