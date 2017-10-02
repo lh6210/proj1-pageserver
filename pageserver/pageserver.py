@@ -96,7 +96,7 @@ def respond(sock):
         print (command)
         if ('~' in command):
             print ('true')
-            transmit(STATUS_FORBIDDEN, sock)
+            transmit(STATUS_NOT_FOUND, sock)
         else:
             transmit(STATUS_OK, sock)
             transmit(CAT, sock)
