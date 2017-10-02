@@ -98,7 +98,7 @@ def respond(sock):
         if '~' in command or '//' in command or '..' in command:
             """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
-        elif command.endwith('.html') or command.endwith('.css'):
+        elif command.endswith('.html') or command.endswith('.css'):
             file = command[1:]
             path_file = os.path.join(DOCROOT, file)
             try:
