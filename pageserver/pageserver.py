@@ -15,6 +15,7 @@
 
 import config    # Configure from .ini files and command line
 import logging   # Better than print statements
+import os
 logging.basicConfig(format='%(levelname)s:%(message)s',
                     level=logging.INFO)
 log = logging.getLogger(__name__)
