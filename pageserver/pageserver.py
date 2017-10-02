@@ -95,6 +95,7 @@ def respond(sock):
         command = parts[1]
         print (command)
         if ('~' in command):
+            print ('true')
             transmit(STATUS_FORBIDDEN, sock)
         else:
             transmit(STATUS_OK, sock)
