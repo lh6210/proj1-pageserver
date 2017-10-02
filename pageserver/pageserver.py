@@ -91,15 +91,15 @@ def respond(sock):
     log.info("Request was {}\n***\n".format(request))
 
     parts = request.split()
-    if len(parts) > 1 and parts[0] == "GET":
+    if ((len(parts) > 1) and (parts[0] == "GET")):
         transmit(STATUS_OK, sock)
         transmit(CAT, sock)
         command = parts[1]
         print (command)
-        if '~' in command or '//' in command or '..' in command:
+        if (('~' in command) or ('//' in command) or ('..' in command)):
             """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
-        elif command.endswith('.html') or command.endswith('.css'):
+        elif (command.endswith('.html') or command.endswith('.css')):
             file = command[1:]
             path_file = os.path.join(DOCROOT, file)
             print(path_file)
