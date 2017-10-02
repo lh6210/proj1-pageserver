@@ -88,18 +88,29 @@ def respond(sock):
     request = str(request, encoding='utf-8', errors='strict')
     log.info("--- Received request ----")
     log.info("Request was {}\n***\n".format(request))
-    log.info("temp message.\n")
 
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
         transmit(STATUS_OK, sock)
+        transmit(CAT, sock)
         command = parts[1]
-        print (command)
-        if '~' in command:
-            print('true')
+        """print (command)"""
+        if '~' in command or '//' in command or '..' in command:
+            """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
+        elif command.endwith('.html') or command.endwith('.css'):
+            file = command[1:]
+            path_file = os.path.join(DOCROOT, file)
+            try:
+                with open(path_file, 'r', encoding='utf-8') as source:
+                    for line in source:
+                        transmit(line, sock)
+            except FileNotFoundError as error:
+                log.warn("Failed to open or read file")
+                log.warn("Requested file was {}".format(path_file))
+                log.warn("Exception: {}".format(error))
         else:
-            transmit(CAT, sock)
+            transmit(STATUS_FORBIDDEN, sock)
     else:
         log.info("Unhandled request: {}".format(request))
         transmit(STATUS_NOT_IMPLEMENTED, sock)
