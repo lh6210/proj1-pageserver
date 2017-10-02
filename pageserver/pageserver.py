@@ -155,8 +155,10 @@ def get_options():
 
 
 def main():
+    global DOCROOT
     options = get_options()
     port = options.PORT
+    DOCROOT = options.DOCROOT
     if options.DEBUG:
         log.setLevel(logging.DEBUG)
     sock = listen(port)
