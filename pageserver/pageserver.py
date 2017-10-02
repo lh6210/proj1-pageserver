@@ -93,6 +93,7 @@ def respond(sock):
     parts = request.split()
     if len(parts) > 1 and parts[0] == "GET":
         command = parts[1]
+        print command
         if ('~' in command):
             transmit(STATUS_FORBIDDEN, sock)
         else:
