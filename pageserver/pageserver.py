@@ -94,7 +94,7 @@ def respond(sock):
     print("parts: ",  parts)
     if ((len(parts) > 1) and (parts[0] == "GET")):
         transmit(STATUS_OK, sock)
-        transmit(CAT, sock)
+        #transmit(CAT, sock)
         command = parts[1]
         print ("command after ", command)
         if (('~' in command) or ('//' in command) or ('..' in command)):
