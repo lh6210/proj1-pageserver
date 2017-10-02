@@ -107,10 +107,11 @@ def respond(sock):
                 with open(path_file, 'r', encoding='utf-8') as source:
                     for line in source:
                         transmit(line.strip(), sock)
-            except FileNotFoundError as error:
+            except OSError as error:
                 log.warn("Failed to open or read file")
                 log.warn("Requested file was {}".format(path_file))
                 log.warn("Exception: {}".format(error))
+                transmit(STATUS_NOT_FOUND, sock)
         else:
             transmit(STATUS_FORBIDDEN, sock)
     else:
