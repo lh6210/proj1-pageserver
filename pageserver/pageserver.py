@@ -95,8 +95,8 @@ def respond(sock):
         transmit(STATUS_OK, sock)
         transmit(CAT, sock)
         command = parts[1]
-        """print (command)"""
-        if '~' in command or '\//' in command or '..' in command:
+        print (command)
+        if '~' in command or '//' in command or '..' in command:
             """print('true')"""
             transmit(STATUS_FORBIDDEN, sock)
         elif command.endswith('.html') or command.endswith('.css'):
